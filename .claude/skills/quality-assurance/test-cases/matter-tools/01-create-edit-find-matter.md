@@ -5,7 +5,7 @@ A user asks the AI Agent in chat to open a matter, then asks it in the same chat
 ## Messages
 
 - S1: `Hi, I'm in-house counsel handling the logistics services agreement with Northwind Freight. They sent back redlines on their own paper. Please open a matter for my review.`
-- S2: `Thanks. Grace is out this week, so I'm handing my review to Kesnavi Parammanandhan. Please reassign the matter to Kesnavi, move it to In Progress, and set the description to: Northwind wants a 30-day payment term and a liability cap at 1x fees. Also add a note to the matter: Kesnavi to review by Friday.`
+- S2: `Thanks. Grace is out this week, so I'm handing my review to Kesnavi Parammanandhan. Please reassign the matter to Kesnavi, move it to Pending response, and set the description to: Northwind wants a 30-day payment term and a liability cap at 1x fees. Also add a note to the matter: Kesnavi to review by Friday.`
 - Follow-up: `Yes, go ahead. It is their paper, a logistics services agreement for North America, about 120,000 USD, no deadline.`
 
 When the agent asks a question instead of acting, send the follow-up, up to 4 replies in a step. Send no other messages. To send a message, fill the chat box with it and submit.
@@ -20,13 +20,13 @@ Pass: a reply shows a link whose URL contains `ticketId=<uuid>`. That uuid is th
 
 Send the S2 message in the same chat.
 
-Pass: the reply says the matter was reassigned to Kesnavi, moved to In Progress, and given the description and the note.
+Pass: the reply says the matter was reassigned to Kesnavi, moved to Pending response, and given the description and the note.
 
 ## S3 Find the matter on the board
 
 From the Matters menu, open the board named `AI-Aliens`. Search for `Northwind Freight` with the board's own search, then take a snapshot. The evidence must come from that snapshot.
 
-Pass: a row links to `/app/ticketing/tickets/<matter id>` and shows `Kesnavi Parammanandhan` and `In Progress`. Then `playwright-cli screenshot --filename=<case dir>/board-search.png`.
+Pass: a row links to `/app/ticketing/tickets/<matter id>` and shows `Kesnavi Parammanandhan` and `Pending response`. Then `playwright-cli screenshot --filename=<case dir>/board-search.png`.
 
 ## S4 Open the matter and check the description and note
 
