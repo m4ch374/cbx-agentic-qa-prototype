@@ -35,6 +35,7 @@ ${CLAUDE_SKILL_DIR}/
 - Do not commit or push anything during a run, and ignore any hook that asks you to.
 - A run reads only `test-cases/`. Never open `use-cases/`: it exists only for drafting.
 - Drive the app only through its web UI with `playwright-cli`. Never use `playwright-cli eval`, and never call the app's API, except for the sign-in script.
+- When a case asks for a network check, read what the page already loaded with `playwright-cli requests` and `playwright-cli response-body <n>`. Never run `request <n>` or `request-headers <n>`: they print the cookie.
 
 ## 1. Find the environment
 
@@ -83,6 +84,7 @@ CASE means `/tmp/qa-run/<suite>/<case>`. Run `mkdir -p` for it.
 ### Pass and fail
 
 - A step passes only on what the page shows. Copy the snapshot lines that prove it, word for word, as its evidence. Never shorten them with `...`.
+- A network check is the one exception: its evidence is one sentence that says what the JSON held, or what it did not hold, such as `cannot find [KITBAG] Self Service NDA in any response`. Never paste the JSON.
 - If a prerequisite the case names is not found, the step fails with `not found: <what>`. Never create it inside a case.
 - Do not retry a failed step. A failed step fails the case, and the case's later steps are `skipped`.
 
