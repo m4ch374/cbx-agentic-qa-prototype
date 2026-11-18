@@ -14,7 +14,7 @@ Send only this message. To send a message, fill the chat box with it and submit.
 
 From the Matters menu, open the board named `AI-Aliens`. Filter it by assignee `Grace Li` and by type `Privacy (Promoted)`, then take a snapshot. If the board pages its rows, go through every page.
 
-Pass: the rows include the matter from `03-create-privacy-matter-with-file`. Write down every row's matter id from its `/app/ticketing/tickets/<id>` link. This is the expected list. Then `playwright-cli screenshot --filename=<case dir>/expected-matters.png`.
+Pass: the rows include the matter from `03-create-privacy-matter-with-file`. Write down every row's matter id, the uuid in its link. This is the expected list. Then `playwright-cli screenshot --filename=<case dir>/expected-matters.png`.
 
 ## S2 Ask the agent for the same matters
 

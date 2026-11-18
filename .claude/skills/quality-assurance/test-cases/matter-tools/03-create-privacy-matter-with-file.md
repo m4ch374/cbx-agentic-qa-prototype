@@ -12,13 +12,13 @@ Send only this message. The step fails if the agent asks a question instead of m
 
 In the AI Agent section, open the AI Agent named `Ask Kes Anything` and start a chat with it. Click the chat box's attach control, then run `playwright-cli upload ${CLAUDE_SKILL_DIR}/test-cases/matter-tools/files/Fabrikam_DPA.docx`. Wait until the chat box shows `Fabrikam_DPA.docx`, then send the S1 message.
 
-Pass: the first reply shows a link whose URL contains `ticketId=<uuid>`. That uuid is the matter id.
+Pass: the first reply shows a link to the new matter. The uuid in that link's URL is the matter id.
 
 ## S2 Find the matter on the board
 
 From the Matters menu, open the board named `AI-Aliens`. Search for `Fabrikam` with the board's own search, then take a snapshot. The evidence must come from that snapshot.
 
-Pass: a row links to `/app/ticketing/tickets/<matter id>`, its subject is `{TEST} Legal review of Fabrikam Data Processing Agreement`, and it shows `Grace Li`.
+Pass: a row whose link contains the matter id has the subject `{TEST} Legal review of Fabrikam Data Processing Agreement` and shows `Grace Li`.
 
 ## S3 Open the matter and check its type and file
 
@@ -30,4 +30,4 @@ Then open the matter's attachments.
 
 Pass: they list `Fabrikam_DPA.docx`. Then `playwright-cli screenshot --filename=<case dir>/privacy-matter-file.png`.
 
-The case's `matterUrl` is BASE + `/app/ticketing/tickets/<matter id>`.
+The case's `matterUrl` is the URL of the matter page that S3 opens.
