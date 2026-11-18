@@ -51,7 +51,7 @@ def test_card():
         {"name": "s", "setup": {"status": "passed"}, "cases": [
             {"name": "01-good", "title": "Good", "status": "passed", "dir": good},
             {"name": "02-bad", "title": "Bad", "status": "failed", "dir": bad},
-            {"name": "03-later", "title": "Later", "status": "skipped", "dir": "/nowhere"},
+            {"name": "03-later", "title": "Later", "status": "skipped", "reason": "Not run: 02 failed", "dir": "/nowhere"},
         ]}]}
     card = build_card(summary, "QA", "https://claude.ai/artifact/x", None, [("Ann", "ann@example.com")])["attachments"][0]["content"]
     texts = json.dumps(card, ensure_ascii=False)

@@ -135,13 +135,10 @@ def build_card(summary, title, artifact, publish_error, mentions):
     for suite, suite_runs in zip(suites, runs):
         body.extend(suite_header(suite))
         setup_failed = suite.get("setup", {}).get("status") == "failed"
-        blocker = None
         for case, run in zip(suite.get("cases", []), suite_runs):
             link = f"{artifact}#{suite.get('name')}.{case.get('name')}" if artifact else None
-            reason = "Not run: setup failed" if setup_failed else f"Not run: {blocker} failed" if blocker else "Not run"
+            reason = "Not run: setup failed" if setup_failed else case.get("reason") or "Not run"
             body.append(case_block(index, case, run, link, reason))
-            if case.get("status") == "failed" and not blocker:
-                blocker = case.get("name", "")[:2]
             index += 1
     if publish_error:
         body.append(text(f"The recording page was not updated: {publish_error}", color="Warning"))

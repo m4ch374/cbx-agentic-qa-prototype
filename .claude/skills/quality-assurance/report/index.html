@@ -177,12 +177,10 @@ load("summary.json").then(async (summary) => {
     nav.append(el("div", { className: "group" }, suite.name,
       el("span", { className: setupFailed ? "failed" : "" }, setupFailed ? "setup failed" : `${passed} of ${suite.cases.length} passed`)));
     if (setupFailed) nav.append(el("p", { className: "setup" }, suite.setup.error || ""));
-    let blocker = null;
     for (const c of suite.cases) {
       const base = `${suite.name}/${c.name}`;
       const run = c.status === "skipped" ? null : await load(`${base}/run.json`);
-      const reason = setupFailed ? "Not run: setup failed" : blocker ? `Not run: ${blocker} failed` : "Not run";
-      if (c.status === "failed" && !blocker) blocker = c.name.slice(0, 2);
+      const reason = setupFailed ? "Not run: setup failed" : c.reason || "Not run";
       const item = { key: `${suite.name}.${c.name}`, suite: suite.name, title: c.title || c.name, status: c.status, run, base, reason };
       total += (run && run.durationSec) || 0;
       cases.push(item);

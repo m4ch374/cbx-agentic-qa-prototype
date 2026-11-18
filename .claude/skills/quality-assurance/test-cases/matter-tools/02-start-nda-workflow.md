@@ -4,27 +4,33 @@ A user asks the AI Agent in chat for an NDA without saying whose template or whi
 
 ## Messages
 
-- S1: `Hi, we're about to share pricing with Contoso Supplies Pty Ltd and need an NDA in place first. Can you get one started?`
-- Follow-up: `Use our own template. They're in Australia.`
+- S1: `Hi, we're about to share pricing with Contoso Supplies and need an NDA in place first. Can you get one started?`
 
-When the agent asks a question instead of acting, send the follow-up, up to 4 replies in the step. Send no other messages. To send a message, fill the chat box with it and submit.
+## Facts
+
+- Template: our own.
+- Contoso Supplies is in Australia.
 
 ## S1 Ask for an NDA in chat
 
-In the AI Agent section, open the AI Agent named `Ask Kes Anything` and start a chat with it. Send the S1 message.
+Open the AI Agent named `Ask Kes Anything` and start a chat. Send the S1 message.
 
-Pass: before it starts anything, the agent asks whose template to use and which region. After the follow-up, a reply says it started an NDA for `Contoso Supplies Pty Ltd` and shows a link to the workflow. The reply does not have to name the workflow: S2 checks the link goes to the right one.
+Pass: before it starts anything, the agent asks whose template to use and which region, in one question or in more. After the answers, a reply says it started the NDA and links to the workflow. The reply does not have to name the workflow: S2 checks that the link goes to the right one.
 
 ## S2 Open the started workflow
 
-Open the workflow from the link in that reply. If it opens a new tab, move it to the first tab as the run rules say.
+Open the workflow from the link in that reply.
 
-Pass: the page shows `Contoso` and shows the workflow as not complete. Then `playwright-cli screenshot --filename=<case dir>/nda-workflow.png`.
+Pass: the page is for `Contoso` and shows that the workflow is not complete.
 
-Network check: in `playwright-cli requests`, find the response that describes this assessment. It must name the workflow `[KITBAG] Self Service NDA`.
+Screenshot: `nda-workflow`
+
+Network check: among the responses that this page loaded, find the one that describes this started workflow. It must name the workflow `[KITBAG] Self Service NDA`.
 
 ## S3 Find it under its workflow
 
-From the Workflows menu, open Project Teams, then the team `Legal Team`, then the workflow `[KITBAG] Self Service NDA`.
+Find the workflow `[KITBAG] Self Service NDA` of the team `Legal Team`, and open its list of started workflows. The app can call them assessments or submissions.
 
-Pass: its list of assessments has a row that opens the same page as the link from S1. Then `playwright-cli screenshot --filename=<case dir>/nda-workflow-list.png`.
+Pass: a row in that list is for the same record as the link from S1. If the row is not on the first page, use the list's search, sort or pages to find it.
+
+Screenshot: `nda-workflow-list`

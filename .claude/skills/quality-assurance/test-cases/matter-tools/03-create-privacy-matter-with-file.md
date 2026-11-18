@@ -6,28 +6,32 @@ A user attaches a Data Processing Agreement in chat and asks the AI Agent for a 
 
 - S1: `Please open a legal review of the attached Fabrikam Data Processing Agreement and assign it to Grace Li. It covers Australia and New Zealand.`
 
-Send only this message. The step fails if the agent asks a question instead of making the matter. To send a message, fill the chat box with it and submit.
+This case has no facts: the message gives all that the agent needs, so a question from the agent fails S1.
 
 ## S1 Attach the file and ask for a review
 
-In the AI Agent section, open the AI Agent named `Ask Kes Anything` and start a chat with it. Click the chat box's attach control, then run `playwright-cli upload ${CLAUDE_SKILL_DIR}/test-cases/matter-tools/files/Fabrikam_DPA.docx`. Wait until the chat box shows `Fabrikam_DPA.docx`, then send the S1 message.
+Open the AI Agent named `Ask Kes Anything` and start a chat. Attach the file `${CLAUDE_SKILL_DIR}/test-cases/matter-tools/files/Fabrikam_DPA.docx`: use the chat box's attach control, then `playwright-cli upload <that path>`. Wait until the chat box shows `Fabrikam_DPA.docx`, then send the S1 message.
 
-Pass: the first reply shows a link to the new matter. The uuid in that link's URL is the matter id.
+Pass: the agent makes a matter without a question, and its reply links to the matter. Write down that link.
 
 ## S2 Find the matter on the board
 
-From the Matters menu, open the board named `AI-Aliens`. Search for `Fabrikam` with the board's own search, then take a snapshot. The evidence must come from that snapshot.
+Open the board named `AI-Aliens`. Search the board for `Fabrikam`. Take a snapshot: the evidence must come from it.
 
-Pass: a row whose link contains the matter id has the subject `{TEST} Legal review of Fabrikam Data Processing Agreement` and shows `Grace Li`.
+Pass: the row for the matter from S1 has a subject that names Fabrikam and the Data Processing Agreement, and it shows the assignee `Grace Li`.
 
 ## S3 Open the matter and check its type and file
 
 Open the matter from that row.
 
-Pass: the matter page shows the type `Privacy (Promoted)` and the assignee `Grace Li`. Then `playwright-cli screenshot --filename=<case dir>/privacy-matter.png`.
+Pass: the matter page shows the type `Privacy (Promoted)` and the assignee `Grace Li`.
 
-Then open the matter's attachments.
+Screenshot: `privacy-matter`
 
-Pass: they list `Fabrikam_DPA.docx`. Then `playwright-cli screenshot --filename=<case dir>/privacy-matter-file.png`.
+Then open the part of the matter that shows its files.
+
+Pass: the files include `Fabrikam_DPA.docx`.
+
+Screenshot: `privacy-matter-file`
 
 The case's `matterUrl` is the URL of the matter page that S3 opens.

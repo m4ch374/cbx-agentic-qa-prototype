@@ -8,16 +8,26 @@ A user asks the AI Agent for every privacy matter assigned to one person. The re
 
 - S2: `Can you show me all the privacy matters assigned to Grace Li?`
 
-Send only this message. To send a message, fill the chat box with it and submit.
+This case has no facts: a question from the agent fails S2.
 
 ## S1 List the expected matters on the board
 
-From the Matters menu, open the board named `AI-Aliens`. Filter it by assignee `Grace Li` and by type `Privacy (Promoted)`, then take a snapshot. If the board pages its rows, go through every page.
+Open the board named `AI-Aliens`. Show only the matters with the assignee `Grace Li` and the type `Privacy (Promoted)`. Remove any other filter, so that the board hides no matter because of its status. If the board has pages or loads more rows on scroll, go through all of them.
 
-Pass: the rows include the matter from `03-create-privacy-matter-with-file`. Write down every row's matter id, the uuid in its link. This is the expected list. Then `playwright-cli screenshot --filename=<case dir>/expected-matters.png`.
+Pass: the rows include the matter from `03-create-privacy-matter-with-file`. Write down each row's link and subject. This is the expected list.
+
+Screenshot: `expected-matters`
 
 ## S2 Ask the agent for the same matters
 
-In the AI Agent section, open the AI Agent named `Ask Kes Anything` and start a new chat with it. Send the S2 message.
+Open the AI Agent named `Ask Kes Anything` and start a new chat. Send the S2 message.
 
-Pass: the reply links to every matter id on the expected list, and to no other matter. Copy each matter link from the reply as evidence.
+Pass: all of these are true.
+
+- The reply lists the matter from `03-create-privacy-matter-with-file`.
+- Each matter that the reply lists is on the expected list.
+- The reply lists each matter on the expected list, unless it says that it shows only some of them.
+
+Other people use this board. If the two lists are different, make the expected list again before you decide, and compare the reply with the new list.
+
+As evidence, copy the reply's line for the matter from `03-create-privacy-matter-with-file`.
