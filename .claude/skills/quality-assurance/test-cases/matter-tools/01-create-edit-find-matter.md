@@ -5,7 +5,7 @@ A user asks the AI Agent in chat to open a matter, then asks it in the same chat
 ## Messages
 
 - S1: `Hi, I'm in-house counsel handling the logistics services agreement with Northwind Freight. They sent back redlines on their own paper. Please open a matter for my review.`
-- S2: `Thanks. Please reassign the matter to Kesnavi Parammanandhan, move it to Pending response, and set the description to: Northwind wants a 30-day payment term and a liability cap at 1x fees. Also add a note to the matter: Kesnavi to review by Friday.`
+- S2: `Thanks. Please change the contract value to 150,000 USD, move it to Pending response, and set the description to: Northwind wants a 30-day payment term and a liability cap at 1x fees. Also add a note to the matter: Kesnavi to review by Friday.`
 
 ## Facts
 
@@ -31,15 +31,15 @@ Pass: the agent's last reply says it changed the matter. It does not have to nam
 
 Open the board named `AI-Aliens`. Search the board for a word from the subject that S1 wrote down, such as `Northwind`. Take a snapshot: the evidence must come from it.
 
-Pass: the row for the matter from S1 shows the assignee `Kesnavi Parammanandhan` and the status `Pending response`.
+Pass: the row for the matter from S1 shows the status `Pending response`.
 
 Screenshot: `board-search`
 
-## S4 Open the matter and check the description and note
+## S4 Open the matter and check the description, value and note
 
 Open the matter from that row.
 
-Pass: the matter's description says that Northwind wants a 30-day payment term and a liability cap at 1x fees.
+Pass: the matter's description says that Northwind wants a 30-day payment term and a liability cap at 1x fees, and the matter shows a contract value of 150,000 in any number format.
 
 Screenshot: `matter-details`
 

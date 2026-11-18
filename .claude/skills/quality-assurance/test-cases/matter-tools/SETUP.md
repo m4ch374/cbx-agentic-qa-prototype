@@ -18,6 +18,6 @@ Check each prerequisite by finding its name in the UI. If one is missing, SETUP 
 
 1. An AI Agent named `Ask Kes Anything`.
 2. A board named `AI-Aliens`.
-3. People named `Kesnavi Parammanandhan` and `Grace Li`, who can be assignees on that board: the board shows each name where a user picks or filters an assignee.
+3. A person named `Grace Li`, who can be an assignee on that board: the board shows the name where a user picks or filters an assignee.
 4. A workflow named `[KITBAG] Self Service NDA` in the team `Legal Team`.
 5. The file `${CLAUDE_SKILL_DIR}/test-cases/matter-tools/files/Fabrikam_DPA.docx`: check it with `ls`.
