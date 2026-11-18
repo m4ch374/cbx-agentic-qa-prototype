@@ -2,11 +2,11 @@
 
 needs: 03-create-privacy-matter-with-file
 
-A user asks the AI Agent for every privacy matter assigned to one person. The reply must list each matching matter, including the one made today, and no other matter.
+A user asks the AI Agent for every privacy matter that is assigned to one person on one board. The reply must list each matching matter on that board, including the one made today, and no other matter.
 
 ## Messages
 
-- S2: `Can you show me all the privacy matters assigned to Grace Li?`
+- S2: `Can you show me all the privacy matters assigned to Grace Li on the AI-Aliens board?`
 
 This case has no facts: a question from the agent fails S2.
 
