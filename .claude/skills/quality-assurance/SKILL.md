@@ -77,7 +77,7 @@ CASE means `/tmp/qa-run/<suite>/<case>`. Run `mkdir -p` for it.
 
 - Look before you act. Run `playwright-cli snapshot --filename=/tmp/qa-run/snap.txt`, then search that file with Grep (or Read part of it) to find the element you need by what it is for, and act on it by its `ref`. Take a new snapshot after anything that changes the page. Never guess a ref you have not seen in a snapshot.
 - Find things the way a new user would: by headings, labels, tabs, buttons and menus. Open named things (an AI Agent, a board) by finding their name in the UI, not by a stored ID or URL.
-- A label such as `Open Board` can be on many cards or rows. Read the snapshot lines around the name you want, and use the control that is in the same card or row as that name. Never pick a control from a search result that does not show which name it belongs to.
+- A label such as `Open Board` can be on many cards or rows. Read the snapshot from the name before the one you want to the name after it: a control can come before or after its name. Use the control that is in the same card or row as the name you want. Never pick a control from a search result that does not show which name it belongs to.
 - After you open a named thing, take a snapshot and check that the page shows that name. If the page shows a different name, you opened the wrong thing: go back and open the right one. Do this check before you report that a page does not load.
 - Keep a case in one tab, because the video records one file per tab. When a click opens a new tab, run `playwright-cli tab-list` to read its URL, `playwright-cli tab-close <index>` to close it, then `playwright-cli goto <that URL>` in the first tab.
 - Commands: `goto <url>`, `click <ref>`, `fill <ref> "<text>"` (add `--submit` to press Enter), `select <ref> <value>`, `press <key>`, `screenshot --filename=<file>`.
@@ -89,7 +89,7 @@ CASE means `/tmp/qa-run/<suite>/<case>`. Run `mkdir -p` for it.
 
 A case says what a user does and what must then be true. It does not say where each control is, because the UI can change.
 
-- A name in backticks (an AI Agent, a board, a person, a status, a type, a file) is fixed. Find the thing by that name. Ignore letter case, extra spaces, and an end that the UI cuts off.
+- A name in backticks (an AI Agent, a board, a person, a status, a type, a file) is fixed. Find the thing by that name. Ignore letter case and extra spaces. A name that the UI cuts off ends with a mark such as `…`. A shorter name without that mark is a different name, even when the name you want starts with it.
 - All other words tell you the goal. When you cannot find a menu, tab or control that a step names, find one that does the same job, use it, and say so in the step's summary.
 - A `Pass:` line with text in backticks needs that text on the page. A `Pass:` line in plain words passes on meaning: different wording is OK, a missing or wrong fact is not.
 - A case identifies a record by its link. Two links are for the same record when they hold the same id or open the same page. Never match a record by its text only: an earlier run can leave a record with the same text.
